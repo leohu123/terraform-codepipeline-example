@@ -12,6 +12,7 @@ phases:
   pre_build:
     commands:
       - echo now into the pre-build...
+      - mkdirr newfolder
   build:
     commands:
       - echo now into the real-build...
