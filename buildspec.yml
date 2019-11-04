@@ -8,20 +8,16 @@ env:
 phases:
   install:
     commands:
-      - make install
+      - echo now is install...
   pre_build:
     commands:
-      - make test
+      - echo now into the pre-build...
   build:
     commands:
-      - make build
+      - echo now into the real-build...
   post_build:
     commands:
       - echo Uploading artifact to S3.
-      - aws s3 cp $ARTIFACT_FILENAME s3://$RELEASE_BUCKET_NAME/$ARTIFACT_NAME
-      - echo Updating release key.
-      - aws --region=us-east-1 ssm put-parameter --name /$APP_NAME/releases/$CODEBUILD_RESOLVED_SOURCE_VERSION --value $ARTIFACT_FILENAME --type String --overwrite
-      - aws --region=us-east-1 ssm put-parameter --name /$APP_NAME/releases/latest --value $ARTIFACT_FILENAME --type String --overwrite
 
 artifacts:
   files:
